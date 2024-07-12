@@ -51,7 +51,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.blueAccent.shade100,
       appBar: AppBar(
-        title: Text('Flutter Tab Async'),
+        title: const Text('Flutter Tab Async'),
         surfaceTintColor: Colors.transparent,
         shadowColor: Colors.transparent,
         elevation: 0,
@@ -67,12 +67,12 @@ class MyHomePage extends StatelessWidget {
               fontSize: 20,
           color: isSelected?Colors.white:Colors.black38,
         )),
-            SizedBox(height: 8,),
+            const SizedBox(height: 8,),
             ...department.employees.map((employee)=>ListTile(
                 title: Text(
                   employee,style: TextStyle(color: isSelected?Colors.white:Colors.black38,),
                 ),
-            )).toList()
+            ))
           ],
         ),
         tabBuilder: (DepartmentModel item, bool isSelected)=>Text(
@@ -84,7 +84,7 @@ class MyHomePage extends StatelessWidget {
 
         labelStyle: LabelStyle(
         color: Colors.deepPurple,
-        padding: EdgeInsets.all(4),
+        padding: const EdgeInsets.all(4),
         height: 32,
         borderRadius: BorderRadius.circular(4),
       ),

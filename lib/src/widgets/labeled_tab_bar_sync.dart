@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tab_sync/src/styles/label_style.dart';
 import 'package:flutter_tab_sync/src/utils/extensions.dart';
-import 'package:flutter_tab_sync/src/utils/extensions.dart';
 
 class LabeledTabBarSync<T> extends StatefulWidget {
   final double barHeight;
@@ -55,12 +54,6 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
   void didUpdateWidget(covariant final LabeledTabBarSync<T> oldWidget) {
     final double toScrollOffset = min(tabsOffsets[widget.selectedTabIndex] , max(0, tabsOffsets.last - scrollingKey.width+widget.tabsSpacing));
 
-    print('Wiso selectedIndex ${widget.selectedTabIndex}');
-    print('Wiso tabsOffsets[widget.selectedTabIndex] ${tabsOffsets[widget.selectedTabIndex]}');
-    print('Wiso tabsOffsets.last ${tabsOffsets.last}');
-    print('Wiso _getWidthOfKey(scrollingKey) ${scrollingKey.width}');
-    print('Wiso toScrollOffset ${toScrollOffset}');
-    print('============================');
     scrollController.animateTo(toScrollOffset, duration: const Duration(milliseconds: 200), curve: Curves.bounceInOut);
     super.didUpdateWidget(oldWidget);
   }

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
@@ -63,21 +61,12 @@ class _LabeledTabSyncViewState<T> extends State<LabeledTabSyncView<T>> {
   }
 
   Future<void> changeSelectedTab(final int newIndex) async {
-    //print('Wiso newIndex $newIndex');
-    //print('Wiso tabsOffset $tabsOffset');
-    //print('Wiso pixels ${scrollController!.offset}');
-    //print('Wiso tabsOffset[newIndex+1] ${tabsOffset[newIndex+1]}');
-    //print('Wiso tabsOffset[newIndex] ${tabsOffset[newIndex]}');
-    ////print('Wiso scrollingKey.height ${scrollingKey.height}');
-    ////print('Wiso tabsOffset.last-tabsOffset[newIndex] ${tabsOffset.last-tabsOffset[newIndex]}');
-    ////print('Wiso tabsOffset.last-tabsOffset[newIndex]>=scrollingKey.height ${tabsOffset.last-tabsOffset[newIndex]>=scrollingKey.height}');
-    //print('==============');
 
     if(scrollController==null) {
       return ;
     }
 
-    Scrollable.ensureVisible(tabsKeys[newIndex].currentContext!,duration: Duration(milliseconds: 200)).then((_){
+    Scrollable.ensureVisible(tabsKeys[newIndex].currentContext!,duration: const Duration(milliseconds: 200)).then((_){
       desiredTabIndex.value=null;
     });
       desiredTabIndex.value=newIndex;

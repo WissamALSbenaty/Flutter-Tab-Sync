@@ -8,8 +8,8 @@ class IndexedListSync<T> extends StatefulWidget {
   final EdgeInsets? padding;
   final void Function() onScroll;
 
-  const IndexedListSync({Key? key, required this.items, required this.itemBuilder,
-    required this.selectedIndex, required this.itemsSpacing, this.padding, required this.onScroll}) : super(key: key);
+  const IndexedListSync({super.key, required this.items, required this.itemBuilder,
+    required this.selectedIndex, required this.itemsSpacing, this.padding, required this.onScroll});
 
   @override
   State<IndexedListSync<T>> createState() => _IndexedListSyncState<T>();
