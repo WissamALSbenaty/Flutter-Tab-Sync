@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class LabelStyle{
   final Color color;
-  final EdgeInsets? padding;
   final Border? border;
   final BorderRadiusGeometry? borderRadius;
   final double height;
 
-  LabelStyle({required this.color,  this.padding, this.border,required this.height, this.borderRadius});
+  final int animationInMilliseconds;
+  LabelStyle({required this.color,this.border,required this.height, this.borderRadius,this.animationInMilliseconds=300});
 }

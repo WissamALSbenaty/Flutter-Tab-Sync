@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:collection/collection.dart' show lowerBound;
 
 class IndexedListSync<T> extends StatefulWidget {
   final List<T> items;
   final Widget Function(T item,bool isSelected)itemBuilder;
   final int selectedIndex;
-  final double itemsSpacing;
+  final double? itemsSpacing;
   final EdgeInsets? padding;
-  final void Function() onScroll;
+  final void Function(int selectedIndex)? onScroll;
 
   const IndexedListSync({super.key, required this.items, required this.itemBuilder,
-    required this.selectedIndex, required this.itemsSpacing, this.padding, required this.onScroll});
+    required this.selectedIndex, this.itemsSpacing, this.padding, this.onScroll});
 
   @override
   State<IndexedListSync<T>> createState() => _IndexedListSyncState<T>();
@@ -39,7 +40,14 @@ class _IndexedListSyncState<T> extends State<IndexedListSync<T>> {
     super.didUpdateWidget(oldWidget);
     animateToIndex();
   }
+  void scrollControllerListener() {
+    if(scrollController==null) {
+      return ;
+    }
+    final int itemsOffsetIndex = lowerBound(itemsOffset, scrollController!.offset );
+    widget.onScroll?.call(itemsOffsetIndex);
 
+  }
   Future<void> animateToIndex() async {
     if(scrollController==null) {
       return ;
@@ -56,9 +64,9 @@ class _IndexedListSyncState<T> extends State<IndexedListSync<T>> {
     (itemKey.currentContext!.findRenderObject()as RenderBox).size.height ).toList();
 
     for (int i = 1; i < itemsOffset.length; i++) {
-      itemsOffset[i] += itemsOffset[i - 1]+widget.itemsSpacing;
+      itemsOffset[i] += itemsOffset[i - 1]+(widget.itemsSpacing??0);
     }
-    scrollController = ScrollController()..addListener(widget.onScroll);
+    scrollController = ScrollController()..addListener(scrollControllerListener);
   }
 
   @override

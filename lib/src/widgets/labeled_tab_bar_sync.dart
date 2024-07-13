@@ -1,5 +1,4 @@
 
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +15,7 @@ class LabeledTabBarSync<T> extends StatefulWidget {
   final EdgeInsets? padding;
   final LabelStyle labelStyle;
   const LabeledTabBarSync(
-      {required this.items, required this.onTabPressed, 
+      {required this.items, required this.onTabPressed,
         required this.selectedTabIndex, super.key, required this.tabBuilder,required this.tabsSpacing,
          required this.barHeight, this.padding,required this.labelStyle});
 
@@ -25,6 +24,7 @@ class LabeledTabBarSync<T> extends StatefulWidget {
 }
 
 class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
+  late Duration animationDuration;
   final ScrollController scrollController = ScrollController();
   bool isFirstDependency=true;
   List<double> tabsOffsets = [],tabsSizes=[];
@@ -37,6 +37,7 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
       return;
     }
     isFirstDependency=false;
+    animationDuration=Duration(milliseconds: widget.labelStyle.animationInMilliseconds);
     tabsKeys=widget.items.map((final e)=>GlobalKey()).toList();
 
     WidgetsBinding.instance.addPostFrameCallback((final _){
@@ -44,7 +45,7 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
     tabsOffsets = tabsKeys.map((final categoryKey) => categoryKey.width).toList();
     tabsOffsets.insert(0, 0);
     for (int i = 1; i < tabsOffsets.length; i++) {
-      tabsOffsets[i] += tabsOffsets[i - 1]+widget.tabsSpacing;
+      tabsOffsets[i] += tabsOffsets[i - 1];
     }
     setState(() {});
     });
@@ -52,9 +53,8 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
 
   @override
   void didUpdateWidget(covariant final LabeledTabBarSync<T> oldWidget) {
-    final double toScrollOffset = min(tabsOffsets[widget.selectedTabIndex] , max(0, tabsOffsets.last - scrollingKey.width+widget.tabsSpacing));
+    Scrollable.ensureVisible(tabsKeys[widget.selectedTabIndex].currentContext!,duration: animationDuration);
 
-    scrollController.animateTo(toScrollOffset, duration: const Duration(milliseconds: 200), curve: Curves.bounceInOut);
     super.didUpdateWidget(oldWidget);
   }
 
@@ -72,15 +72,14 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                width: widget.selectedTabIndex>=tabsOffsets.length?0:tabsOffsets[widget.selectedTabIndex]+(widget.tabsSpacing/2),
+                duration: animationDuration,
+                width: widget.selectedTabIndex>=tabsOffsets.length?0: tabsOffsets[widget.selectedTabIndex]+( widget.tabsSpacing*0.5),
               ),
               AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                height: widget.labelStyle.height,
-                padding: widget.labelStyle.padding,
-                width:(widget.selectedTabIndex>=tabsSizes.length?0: tabsSizes[widget.selectedTabIndex]+widget.tabsSpacing),
+                duration: animationDuration,
+                width:(widget.selectedTabIndex>=tabsSizes.length?0: tabsSizes[widget.selectedTabIndex]),
                 decoration: BoxDecoration(
                     borderRadius: widget.labelStyle.borderRadius,
                     color: widget.labelStyle.color,
@@ -93,17 +92,20 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               for (int i = 0; i < widget.items.length; i++) ...[
-                SizedBox(width: widget.tabsSpacing,),
-                GestureDetector(
-                  onTap: () => widget.onTabPressed(i),
-                  child: Center(
-                    key: tabsKeys[i],
-                    child: widget.tabBuilder(widget.items[i],i==widget.selectedTabIndex)
-                  ),
+                Row(
+                  key: tabsKeys[i],
+                  children: [
+                    SizedBox(width: widget.tabsSpacing,),
+                    GestureDetector(
+                      onTap: () => widget.onTabPressed(i),
+                      child: Center(
+                        child: widget.tabBuilder(widget.items[i],i==widget.selectedTabIndex)
+                      ),
+                    ),
+                  ],
                 ),
               ],
               SizedBox(width: widget.tabsSpacing,),
-
             ],
           ),
 
