@@ -1,8 +1,4 @@
-
-
-
-
-class DepartmentModel{
+class DepartmentModel {
   final String name;
   final List<String> employees;
 
