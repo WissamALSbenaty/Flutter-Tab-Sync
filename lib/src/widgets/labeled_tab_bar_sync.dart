@@ -40,7 +40,8 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
       return;
     }
     isFirstDependency = false;
-    animationDuration = Duration(milliseconds: widget.labelStyle.animationInMilliseconds);
+    animationDuration =
+        Duration(milliseconds: widget.labelStyle.animationInMilliseconds);
     tabsKeys = widget.items.map((final e) => GlobalKey()).toList();
 
     WidgetsBinding.instance.addPostFrameCallback((final _) {
@@ -61,7 +62,6 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
 
     Scrollable.ensureVisible(tabsKeys[widget.selectedTabIndex].currentContext!,
         duration: animationDuration);
-
   }
 
   @override
@@ -90,7 +90,8 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
                       ? 0
                       : tabsSizes[widget.selectedTabIndex]),
                   decoration: BoxDecoration(
-                      borderRadius: widget.labelStyle.borderRadius??BorderRadius.circular(4),
+                      borderRadius: widget.labelStyle.borderRadius ??
+                          BorderRadius.circular(4),
                       color: widget.labelStyle.color,
                       border: widget.labelStyle.border),
                 )
@@ -125,5 +126,4 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
       ),
     );
   }
-
 }

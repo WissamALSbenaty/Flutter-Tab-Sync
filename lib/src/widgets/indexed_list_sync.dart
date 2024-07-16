@@ -26,8 +26,8 @@ class IndexedListSync<T> extends StatefulWidget {
 }
 
 class _IndexedListSyncState<T> extends State<IndexedListSync<T>> {
-  int selectedIndex=0;
-  ScrollController scrollController=ScrollController();
+  int selectedIndex = 0;
+  ScrollController scrollController = ScrollController();
   List<double> itemsOffset = [];
   bool isFirstDependency = true;
   late List<GlobalKey> itemsKeys;
@@ -43,30 +43,29 @@ class _IndexedListSyncState<T> extends State<IndexedListSync<T>> {
       initKeys();
     });
   }
+
   void changeItemsIndex() {
-    final int itemsOffsetIndex = max(0,lowerBound(itemsOffset, scrollController.offset)-1);
+    final int itemsOffsetIndex =
+        max(0, lowerBound(itemsOffset, scrollController.offset) - 1);
     widget.onScroll?.call(itemsOffsetIndex);
     setState(() {
-      selectedIndex=itemsOffsetIndex;
+      selectedIndex = itemsOffsetIndex;
     });
-
   }
+
   @override
   void didUpdateWidget(covariant final IndexedListSync<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     scrollController.removeListener(changeItemsIndex);
-    selectedIndex=widget.selectedIndex;
+    selectedIndex = widget.selectedIndex;
     Scrollable.ensureVisible(itemsKeys[widget.selectedIndex].currentContext!,
-        duration: const Duration(milliseconds: 200)).then((_)=>scrollController.addListener(changeItemsIndex));
+            duration: const Duration(milliseconds: 200))
+        .then((_) => scrollController.addListener(changeItemsIndex));
   }
 
-
-
   void initKeys() {
-    itemsOffset = itemsKeys
-        .map((final itemKey) =>(itemKey.height))
-        .toList();
+    itemsOffset = itemsKeys.map((final itemKey) => (itemKey.height)).toList();
     itemsOffset.insert(0, 0);
     for (int i = 1; i < itemsOffset.length; i++) {
       itemsOffset[i] += itemsOffset[i - 1] + (widget.itemsSpacing ?? 0);
@@ -85,8 +84,7 @@ class _IndexedListSyncState<T> extends State<IndexedListSync<T>> {
             for (int i = 0; i < widget.items.length; i++) ...[
               Container(
                 key: itemsKeys[i],
-                child: widget.itemBuilder(
-                    widget.items[i], selectedIndex == i),
+                child: widget.itemBuilder(widget.items[i], selectedIndex == i),
               ),
               SizedBox(
                 height: widget.itemsSpacing,
