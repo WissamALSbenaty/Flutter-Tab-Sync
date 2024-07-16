@@ -1,14 +1,15 @@
 #### A Flutter package that simplifies scrolling to a specific index within a list of widgets that have different heights
 
 
-<br><img src="assets/videos/flowers.gif"  width="200" height="400"><br>
+<br><img src="https://github.com/WissamALSbenaty/Flutter-Tab-Sync/raw/main/assets/videos/flowers.gif"  width="200" height="400"><br>
 ## Usage
 The package provides 3 widgets with different customizations for each 
 
 #### LabeledTabViewSync
 use this widget to provide a label tab bar
-<br><img src="assets/videos/labeled.gif"  width="200" height="400"><br>
 
+<br><img src="https://github.com/WissamALSbenaty/Flutter-Tab-Sync/raw/main/assets/videos/indexed_list.gif"  width="200" height="400"><br>
+   
 
 ```dart
 LabeledTabViewSync<DepartmentModel>(
@@ -54,7 +55,7 @@ LabeledTabViewSync<DepartmentModel>(
 
 #### IndicatedTabViewSync
 use this widget to provide a  tab bar with indicator
-<br><img src="assets/videos/indicated.gif"  width="200" height="400"><br>
+<br><img src="https://github.com/WissamALSbenaty/Flutter-Tab-Sync/raw/main/assets/videos/indicated.gif"  width="200" height="400"><br>
 
 ```dart
  IndicatedTabViewSync<DepartmentModel>(
@@ -102,7 +103,7 @@ use this widget to provide a  tab bar with indicator
 
 #### IndexedListSync
 Also , you can use ```IndexedListSync``` to scroll to specific index by passing the selected index
-<br><img src="assets/videos/indexed_list.gif"  width="200" height="400"><br>
+<br><img src="https://github.com/WissamALSbenaty/Flutter-Tab-Sync/raw/main/assets/videos/indexed_list.gif"  width="200" height="400"><br>
 ```dart
   ValueNotifier<int>selectedIndex=ValueNotifier(0);
 

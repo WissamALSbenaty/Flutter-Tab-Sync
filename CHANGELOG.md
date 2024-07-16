@@ -1,9 +1,4 @@
-## 0.0.4
 
-Update Readme file
-## 0.0.3
-
-Update Readme file
 
 ## 0.0.2
 
