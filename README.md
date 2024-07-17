@@ -8,7 +8,7 @@ The package provides 3 widgets with different customizations for each
 #### LabeledTabViewSync
 use this widget to provide a label tab bar
 
-<br><img src="https://github.com/WissamALSbenaty/Flutter-Tab-Sync/raw/main/assets/videos/indexed_list.gif"  width="200" height="400"><br>
+<br><img src="https://github.com/WissamALSbenaty/Flutter-Tab-Sync/raw/main/assets/videos/indicated.gif"  width="200" height="400"><br>
    
 
 ```dart

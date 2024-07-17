@@ -1,4 +1,18 @@
+## 0.0.7
 
+Update Readme file
+## 0.0.6
+
+Update Readme file
+## 0.0.5
+
+Update Readme file
+## 0.0.4
+
+Update Readme file
+## 0.0.3
+
+Update Readme file
 
 ## 0.0.2
 
