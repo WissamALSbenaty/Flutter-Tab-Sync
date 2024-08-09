@@ -42,6 +42,7 @@ class _IndexedListSyncState<T> extends State<IndexedListSync<T>> {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
       initKeys();
     });
+    scrollController.addListener(changeItemsIndex);
   }
 
   void changeItemsIndex() {

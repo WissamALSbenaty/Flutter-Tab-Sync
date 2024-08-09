@@ -1,3 +1,12 @@
+## 0.0.9
+
+Fix initial scrolling in LabeledTabViewSync
+## 0.0.9
+
+Fix itemSpacing in TabViewSync
+## 0.0.8
+
+Fix LabeledTabBarSync initialState
 ## 0.0.7
 
 Update Readme file

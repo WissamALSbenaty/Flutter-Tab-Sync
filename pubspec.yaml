@@ -1,6 +1,6 @@
 name: flutter_tab_sync
 description: "A Flutter package for scrolling lists with items of varying sizes."
-version: 0.0.7
+version: 0.0.10
 repository: https://github.com/WissamALSbenaty/Flutter-Tab-Sync.git
 topics:
   - tabs

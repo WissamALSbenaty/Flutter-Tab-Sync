@@ -53,13 +53,14 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
       for (int i = 1; i < tabsOffsets.length; i++) {
         tabsOffsets[i] += tabsOffsets[i - 1];
       }
+      setState(() {});
     });
   }
 
   @override
   void didUpdateWidget(covariant final LabeledTabBarSync<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-
+    print('Wiso updated ${widget.selectedTabIndex}');
     Scrollable.ensureVisible(tabsKeys[widget.selectedTabIndex].currentContext!,
         duration: animationDuration);
   }
