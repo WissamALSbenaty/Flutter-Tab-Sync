@@ -63,7 +63,6 @@ class _TabViewSyncState<T> extends State<TabViewSync<T>> {
     final Widget tabBar = ValueListenableBuilder<int>(
         valueListenable: selectedTabIndex,
         builder: (final _, final value, final __) {
-          print('Wiso rebuilding with value $value');
           return widget.tabBarBuilder(value, changeSelectedItem);
         });
 

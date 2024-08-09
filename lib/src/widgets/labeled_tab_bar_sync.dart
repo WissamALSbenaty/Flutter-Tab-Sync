@@ -60,7 +60,6 @@ class _LabeledTabBarSyncState<T> extends State<LabeledTabBarSync<T>> {
   @override
   void didUpdateWidget(covariant final LabeledTabBarSync<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('Wiso updated ${widget.selectedTabIndex}');
     Scrollable.ensureVisible(tabsKeys[widget.selectedTabIndex].currentContext!,
         duration: animationDuration);
   }
