@@ -1,3 +1,8 @@
+## 0.1.0+1
+
+Add SliverLabeledTabViewSync
+Add SliverIndicatedTabViewSync
+
 ## 0.0.10
 
 Fix initial scrolling in LabeledTabViewSync
