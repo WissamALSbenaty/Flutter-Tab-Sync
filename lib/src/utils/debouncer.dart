@@ -8,7 +8,7 @@ class Debouncer {
 
   Debouncer({required this.milliseconds});
 
-  run(final VoidCallback action) {
+  void run(final VoidCallback action) {
     if (_timer != null) {
       _timer!.cancel();
     }
